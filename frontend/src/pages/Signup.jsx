@@ -14,13 +14,13 @@ const Signup = () => {
     e.preventDefault()
 
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/signup', {
+      const res = await axios.post('https://note-app-backend-dqfa.onrender.com/api/auth/signup', {
         username: name, email, password
       }, {
         withCredentials: true
       })
-      if(!res.data.success){
-        toast.error(res.data.error)
+      if(res.data.success === false){
+        toast.error(res.data.message)
       }
       toast.success(res.data.message)
       navigate('/login')

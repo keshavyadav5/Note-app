@@ -26,7 +26,7 @@ const Navbar = ({ userInfo, handleClearSearch, onSearchNote }) => {
     try {
       dispatch(signoutStart())
 
-      const res = await axios.get('http://localhost:3000/api/auth/logout', {
+      const res = await axios.get('https://note-app-backend-dqfa.onrender.com/api/auth/logout', {
         withCredentials: true
       })
 

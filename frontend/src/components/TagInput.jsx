@@ -28,11 +28,11 @@ const TagInput = ({ tags, setTags }) => {
   return (
     <div className=''>
       {tags?.length > 0 && (
-        <div className='flex items-center gap-2 flex-wrap mt-2'> {/* Fixed class name typo from 'flext' to 'flex' */}
+        <div className='flex items-center gap-2 flex-wrap mt-2'> 
           {tags.map((tag, index) => (
             <span key={index} className='flex items-center gap-2 text-sm text-slate-900 bg-slate-100 px-3 py-1 rounded w-fit'>
               #{tag}
-              <button onClick={() => handleRemoveTag(tag)}> {/* Fixed typo from 'butto' to 'button' */}
+              <button onClick={() => handleRemoveTag(tag)}>
                 <MdClose />
               </button>
             </span>
