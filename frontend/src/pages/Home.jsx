@@ -9,6 +9,8 @@ import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import EmptyCard from '../components/EmptyCard';
+import { ENV } from '../config/env';
+
 
 const Home = () => {
   const { currentUser, loading, errordispatch } = useSelector((state) => state.user);
@@ -34,7 +36,7 @@ const Home = () => {
 
   const getAllNotes = async () => {
     try {
-      const res = await axios.get('https://note-app-backend-dqfa.onrender.com/api/note/all', {
+      const res = await axios.get(`${ENV.BACKEND_URL}/api/note/all`, {
         withCredentials: true,
       });
       if (res.data.success === false) {
@@ -56,7 +58,7 @@ const Home = () => {
   const deleteNote = async (note) => {
     const noteId = note._id;
     try {
-      const res = await axios.delete(`https://note-app-backend-dqfa.onrender.com/api/note/delete/${noteId}`, {
+      const res = await axios.delete(`${ENV.BACKEND_URL}/api/note/delete/${noteId}`, {
         withCredentials: true,
       });
 
@@ -80,8 +82,8 @@ const Home = () => {
     }
 
     try {
-      const res = await axios.get('https://note-app-backend-dqfa.onrender.com/api/note/search', {
-        params: { query },  // Ensure the parameter is sent correctly
+      const res = await axios.get(`${ENV.BACKEND_URL}/api/note/search`, {
+        params: { query }, 
         withCredentials: true,
       });
 
@@ -107,7 +109,7 @@ const Home = () => {
   const updateIsPinned = async (noteData) => {
     const noteId = noteData._id;
     try {
-      const res = await axios.put(`https://note-app-backend-dqfa.onrender.com/api/note/update-note-pinned/${noteId}`, {
+      const res = await axios.put(`${ENV.BACKEND_URL}/api/note/update-note-pinned/${noteId}`, {
         isPinned: !noteData.isPinned
       }, { withCredentials: true })
 

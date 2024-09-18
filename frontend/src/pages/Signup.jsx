@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import {ENV} from '../config/env'
 
 const Signup = () => {
   const [name, setName] = useState("")
@@ -14,7 +15,7 @@ const Signup = () => {
     e.preventDefault()
 
     try {
-      const res = await axios.post('https://note-app-backend-dqfa.onrender.com/api/auth/signup', {
+      const res = await axios.post(`${ENV.BACKEND_URL}/api/auth/signup`, {
         username: name, email, password
       }, {
         withCredentials: true
@@ -51,7 +52,6 @@ const Signup = () => {
             placeholder="Email"
             className='input-box'
             value={email}
-            autoFocus
             required
             onChange={(e) => setEmail(e.target.value)}
           />

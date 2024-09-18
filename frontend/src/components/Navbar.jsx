@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux'
 import { signoutFailure, signoutStart, signoutSuccess } from '../../redux/userSlice'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import {ENV} from '../config/env'
+
 
 const Navbar = ({ userInfo, handleClearSearch, onSearchNote }) => {
   const navigate = useNavigate()
@@ -21,14 +23,13 @@ const Navbar = ({ userInfo, handleClearSearch, onSearchNote }) => {
     setSearchQuery("")
     handleClearSearch()
   }
-
   const onLogOut = async () => {
     try {
       dispatch(signoutStart())
 
-      const res = await axios.get('https://note-app-backend-dqfa.onrender.com/api/auth/logout', {
+      const res = await axios.get(`${ENV.BACKEND_URL}/api/auth/logout`, {
         withCredentials: true
-      })
+      });
 
       if (res.data.success === false) {
         dispatch(signoutFailure(res.data.message))
